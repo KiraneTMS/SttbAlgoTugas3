@@ -25,6 +25,9 @@ public class Tugas extends javax.swing.JFrame {
     String background_toogle = "white"; 
     ImageIcon bg = new ImageIcon(getClass().getResource("/src/Netbean W Form.jpg"));
     String mcg ="";
+    String genre = "";
+    int xmouse;
+    int ymouse;
     
     public Tugas() {
         initComponents();
@@ -45,11 +48,43 @@ public class Tugas extends javax.swing.JFrame {
         minimize.setSize(50, 50);
         switch_Theme.setLocation(720, 10);
         switch_Theme.setLocation(50, 50);
+        drag.setLocation(0, 0);
+        drag.setSize(1000, 50);
     }
     void MaincharabuttonGroup(){
         ButtonGroup mg = new ButtonGroup();
         mg.add(male_mc);
         mg.add(female_mc);
+    }
+    void genre(){
+        if (action_genre.isSelected()) {
+            genre = genre+" Action";
+        }
+        if (adventure_genre.isSelected()) {
+            genre = genre+" Adventure";
+        }
+        if (comedy_genre.isSelected()) {
+            genre = genre+" Comedy";
+        }
+        if (drama_genre.isSelected()) {
+            genre = genre+" Drama";
+        }
+        if (ecchi_genre.isSelected()) {
+            genre = genre+" Ecchi";
+        }
+        if (fantasy_genre.isSelected()) {
+            genre = genre+" Fantasy";
+        }
+        if (horror_genre.isSelected()) {
+            genre = genre+" Horror";
+        }
+        if (romance_genre.isSelected()) {
+            genre = genre+" Romance";
+        }
+        if (school_genre.isSelected()) {
+            genre = genre+" School";
+        }
+        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -58,6 +93,7 @@ public class Tugas extends javax.swing.JFrame {
         minimize = new javax.swing.JLabel();
         switch_Theme = new javax.swing.JLabel();
         close = new javax.swing.JLabel();
+        drag = new javax.swing.JLabel();
         Header = new javax.swing.JLabel();
         name_label = new javax.swing.JLabel();
         name_textfield = new javax.swing.JTextField();
@@ -70,15 +106,15 @@ public class Tugas extends javax.swing.JFrame {
         female_mc = new javax.swing.JRadioButton();
         genre_label = new javax.swing.JLabel();
         genre_list = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox9 = new javax.swing.JCheckBox();
+        action_genre = new javax.swing.JCheckBox();
+        adventure_genre = new javax.swing.JCheckBox();
+        comedy_genre = new javax.swing.JCheckBox();
+        drama_genre = new javax.swing.JCheckBox();
+        ecchi_genre = new javax.swing.JCheckBox();
+        fantasy_genre = new javax.swing.JCheckBox();
+        horror_genre = new javax.swing.JCheckBox();
+        romance_genre = new javax.swing.JCheckBox();
+        school_genre = new javax.swing.JCheckBox();
         reason_label = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         reason_list = new javax.swing.JList<>();
@@ -88,8 +124,15 @@ public class Tugas extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/src/Logo.png")).getImage());
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        minimize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                minimizeMouseReleased(evt);
+            }
+        });
         getContentPane().add(minimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 10, 50, 40));
 
         switch_Theme.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -111,6 +154,18 @@ public class Tugas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 10, 50, 40));
+
+        drag.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                dragMouseDragged(evt);
+            }
+        });
+        drag.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                dragMousePressed(evt);
+            }
+        });
+        getContentPane().add(drag, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 50));
 
         Header.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         Header.setText("Input Your Favorites Anime");
@@ -164,23 +219,23 @@ public class Tugas extends javax.swing.JFrame {
 
         genre_list.setBackground(new java.awt.Color(255, 255, 255));
 
-        jCheckBox1.setText("Action");
+        action_genre.setText("Action");
 
-        jCheckBox2.setText("Adventure");
+        adventure_genre.setText("Adventure");
 
-        jCheckBox3.setText("Comedy");
+        comedy_genre.setText("Comedy");
 
-        jCheckBox4.setText("Drama");
+        drama_genre.setText("Drama");
 
-        jCheckBox5.setText("Ecchi");
+        ecchi_genre.setText("Ecchi");
 
-        jCheckBox6.setText("Fantasy");
+        fantasy_genre.setText("Fantasy");
 
-        jCheckBox7.setText("Horror");
+        horror_genre.setText("Horror");
 
-        jCheckBox8.setText("Romance");
+        romance_genre.setText("Romance");
 
-        jCheckBox9.setText("School");
+        school_genre.setText("School");
 
         javax.swing.GroupLayout genre_listLayout = new javax.swing.GroupLayout(genre_list);
         genre_list.setLayout(genre_listLayout);
@@ -190,42 +245,42 @@ public class Tugas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(genre_listLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(genre_listLayout.createSequentialGroup()
-                        .addComponent(jCheckBox1)
+                        .addComponent(action_genre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox4)
+                        .addComponent(drama_genre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox7))
+                        .addComponent(horror_genre))
                     .addGroup(genre_listLayout.createSequentialGroup()
-                        .addComponent(jCheckBox2)
+                        .addComponent(adventure_genre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox5)
+                        .addComponent(ecchi_genre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox8))
+                        .addComponent(romance_genre))
                     .addGroup(genre_listLayout.createSequentialGroup()
-                        .addComponent(jCheckBox3)
+                        .addComponent(comedy_genre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox6)
+                        .addComponent(fantasy_genre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox9)))
+                        .addComponent(school_genre)))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
         genre_listLayout.setVerticalGroup(
             genre_listLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(genre_listLayout.createSequentialGroup()
                 .addGroup(genre_listLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox4)
-                    .addComponent(jCheckBox7))
+                    .addComponent(action_genre)
+                    .addComponent(drama_genre)
+                    .addComponent(horror_genre))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(genre_listLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox5)
-                    .addComponent(jCheckBox8))
+                    .addComponent(adventure_genre)
+                    .addComponent(ecchi_genre)
+                    .addComponent(romance_genre))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(genre_listLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox6)
-                    .addComponent(jCheckBox9))
+                    .addComponent(comedy_genre)
+                    .addComponent(fantasy_genre)
+                    .addComponent(school_genre))
                 .addGap(0, 15, Short.MAX_VALUE))
         );
 
@@ -296,16 +351,24 @@ public class Tugas extends javax.swing.JFrame {
 
     private void SubmitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SubmitMouseReleased
         // TODO add your handling code here:
+        genre = "";
+        genre();
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        String airdate = df.format(airing_date_chooser.getDate());
-        if (airdate.equals("")) {
+        
+        if ((airing_date_chooser.getDate() == null 
+                || name_textfield.equals("") 
+                || rating_combobox.getSelectedItem() == null 
+                ||genre.equals("")
+                ||mcg.equals("")
+                ||reason_list.getSelectedValuesList().equals(""))) {
             Validation_Menu vm = new Validation_Menu();
             vm.setVisible(true);
         }else{
+            String airdate = df.format(airing_date_chooser.getDate());
             review_textarea.setText("Name "+name_textfield.getText()
                 + "\nAiring Date "+airdate
                 + "\nRating"+rating_combobox.getSelectedItem()
-                + "\nGenre"
+                + "\nGenre"+ genre
                 + "\nMC Gender "+mcg
                 + "\nReason "+reason_list.getSelectedValuesList());
         }
@@ -324,8 +387,27 @@ public class Tugas extends javax.swing.JFrame {
 
     private void airing_date_chooserAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_airing_date_chooserAncestorAdded
         // TODO add your handling code here:
-        System.exit(0);
+//        System.exit(0);
     }//GEN-LAST:event_airing_date_chooserAncestorAdded
+
+    private void minimizeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseReleased
+        // TODO add your handling code here:
+        this.setExtendedState(Tugas.ICONIFIED);
+    }//GEN-LAST:event_minimizeMouseReleased
+
+    private void dragMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dragMouseDragged
+        // TODO add your handling code here:
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        
+        this.setLocation(x-xmouse, y-ymouse);
+    }//GEN-LAST:event_dragMouseDragged
+
+    private void dragMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dragMousePressed
+        // TODO add your handling code here:
+        xmouse = evt.getX();
+        ymouse = evt.getY();
+    }//GEN-LAST:event_dragMousePressed
 
     /**
      * @param args the command line arguments
@@ -365,22 +447,21 @@ public class Tugas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Header;
     private javax.swing.JLabel Submit;
+    private javax.swing.JCheckBox action_genre;
+    private javax.swing.JCheckBox adventure_genre;
     private com.toedter.calendar.JDateChooser airing_date_chooser;
     private javax.swing.JLabel airing_label;
     private javax.swing.JLabel background;
     private javax.swing.JLabel close;
+    private javax.swing.JCheckBox comedy_genre;
+    private javax.swing.JLabel drag;
+    private javax.swing.JCheckBox drama_genre;
+    private javax.swing.JCheckBox ecchi_genre;
+    private javax.swing.JCheckBox fantasy_genre;
     private javax.swing.JRadioButton female_mc;
     private javax.swing.JLabel genre_label;
     private javax.swing.JPanel genre_list;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
+    private javax.swing.JCheckBox horror_genre;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton male_mc;
     private javax.swing.JLabel mc_genter_label;
@@ -393,6 +474,8 @@ public class Tugas extends javax.swing.JFrame {
     private javax.swing.JList<String> reason_list;
     private javax.swing.JLabel review_label;
     private javax.swing.JTextArea review_textarea;
+    private javax.swing.JCheckBox romance_genre;
+    private javax.swing.JCheckBox school_genre;
     private javax.swing.JLabel switch_Theme;
     // End of variables declaration//GEN-END:variables
 }
